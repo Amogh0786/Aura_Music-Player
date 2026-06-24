@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="app-background" id="app-background"></div>
+    <div class="glass-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="ph-fill ph-waves"></i>
+                <span>Aura</span>
+            </div>
+
+            <div class="nav-section">
+                <h3>Menu</h3>
+                <nav>
+                    <a href="#" class="active"><i class="ph ph-house"></i> Home</a>
+                    <a href="#"><i class="ph ph-magnifying-glass"></i> Search</a>
+                    <a href="#"><i class="ph ph-books"></i> Your Library</a>
+                    <label for="local-audio-input" class="local-import-btn" style="cursor: pointer; display: flex; align-items: center; gap: 16px; padding: 12px 0; color: var(--text-dim); transition: 0.2s;">
+                        <i class="ph ph-upload-simple"></i> Import Local Music
+                    </label>
+                    <input type="file" id="local-audio-input" accept="audio/*" multiple style="display: none;">
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <h3>Playlists</h3>
+                <nav class="playlist-nav">
+                    <a href="#"><i class="ph-fill ph-push-pin"></i> Chill Vibes</a>
+                    <a href="#"><i class="ph-fill ph-push-pin"></i> Daily Mix 1</a>
+                    <a href="#">Late Night Drive</a>
+                    <a href="#">Deep Focus</a>
+                    <a href="#">Top 50 - Global</a>
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="install-app">
+                    <i class="ph ph-download-simple"></i> Install App
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="nav-arrows">
+                    <button><i class="ph ph-caret-left"></i></button>
+                    <button><i class="ph ph-caret-right"></i></button>
+                </div>
+                <div class="search-bar">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search or paste Spotify link...">
+                </div>
+                <div class="user-profile">
+                    <button class="upgrade-btn">Premium</button>
+                    <div class="avatar">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=3840&q=100" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-scroll">
+                <section class="search-section" id="search-section" style="display: none;">
+                    <div class="section-header">
+                        <h2>Search Results</h2>
+                        <div id="search-loader" class="loader" style="display: none;"></div>
+                    </div>
+                    <div class="card-grid" id="search-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <section class="lyrics-section" id="lyrics-section" style="display: none;">
+                    <div class="lyrics-header">
+                        <h2 id="lyrics-title">Lyrics</h2>
+                    </div>
+                    <div class="lyrics-container" id="lyrics-container">
+                        <!-- Lyrics populated by JS -->
+                    </div>
+                </section>
+
+                <div id="default-content">
+                    <section class="local-library-section" id="local-library-section" style="display: none;">
+                        <div class="section-header">
+                            <h2>Local Library</h2>
+                        </div>
+                        <div class="card-grid" id="local-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+
+                    <section class="hero-section">
+                        <h1 id="greeting">Good evening</h1>
+                    <div class="featured-grid" id="featured-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <section class="mix-section">
+                    <div class="section-header">
+                        <h2>Made For You</h2>
+                        <a href="#">Show all</a>
+                    </div>
+                    <div class="card-grid" id="mix-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <section class="mix-section">
+                    <div class="section-header">
+                        <h2>Recently Played</h2>
+                        <a href="#">Show all</a>
+                    </div>
+                    <div class="card-grid" id="recent-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+                <div class="bottom-spacer"></div>
+                </div> <!-- End default-content -->
+            </div>
+        </main>
+
+        <!-- PLAYER BAR -->
+        <footer class="player-bar">
+            <div class="now-playing">
+                <div class="album-art">
+                    <img id="current-album-img" src="" alt="Album Art">
+                </div>
+                <div class="track-info">
+                    <h4 id="current-title">Track Title</h4>
+                    <p id="current-artist">Artist Name</p>
+                </div>
+                <button class="like-btn"><i class="ph ph-heart"></i></button>
+            </div>
+
+            <div class="player-controls">
+                <div class="controls-main">
+                    <button class="control-btn" id="shuffle-btn"><i class="ph ph-shuffle"></i></button>
+                    <button class="control-btn" id="prev-btn"><i class="ph-fill ph-skip-back"></i></button>
+                    <button class="control-btn play-btn" id="play-btn"><i class="ph-fill ph-play"></i></button>
+                    <button class="control-btn" id="next-btn"><i class="ph-fill ph-skip-forward"></i></button>
+                    <button class="control-btn" id="repeat-btn"><i class="ph ph-repeat"></i></button>
+                </div>
+                <div class="progress-container">
+                    <span class="time" id="current-time">0:00</span>
+                    <div class="progress-bar-bg" id="progress-bg">
+                        <div class="progress-fill" id="progress-fill"></div>
+                        <div class="progress-thumb"></div>
+                    </div>
+                    <span class="time" id="total-time">3:45</span>
+                </div>
+            </div>
+
+            <div class="extra-controls">
+                <button class="control-btn" id="lyrics-btn"><i class="ph ph-microphone-stage"></i></button>
+                <button class="control-btn"><i class="ph ph-queue"></i></button>
+                <button class="control-btn"><i class="ph ph-speaker-high"></i></button>
+                <div class="volume-bar-bg">
+                    <div class="volume-fill"></div>
+                    <div class="progress-thumb"></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div id="yt-player-container" style="display: none;">
+        <div id="yt-player"></div>
+    </div>
+    <audio id="audio-player"></audio>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
